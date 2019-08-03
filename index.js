@@ -6,18 +6,21 @@ const port = process.env.PORT || 3001;
 
 
 
-app.get('/',(req,res)=>{
-    res.send('hi fam')
-})
+app.use(express.static(__dirname + '/public'));
 
-
+app.get('/', function(req, res){
+  res.sendfile(__dirname + '/public/index.html');
+});
 
 
 
 
 
 app.get('/lp',(req,res)=>{
+    
 lastping().then((lp)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.send(lp)
 })
 })
