@@ -5,13 +5,16 @@ const MongoClient = require('mongodb').MongoClient.connect(url, { useNewUrlParse
 
 
 function lastping(){
+    let list=[];
+    let activeList=[]
+    let dissctiveList=[]
     return new Promise((resolve,reject)=>{
         MongoClient.then((db) => {
-            db.db('nLogs').collection('lastPing').findOne({ _id: new ObjectId('5d38e4d81c9d440000e906f8') }).then((doc) => {
-               // console.log('lastping');
-                //console.log(doc.lastPing);
-               // db.close()
-                resolve(doc.lastPing)
+            db.db('nLogs').collection('lastPing').find(({Mac:"a"}), {$all: 1, '_id': 0}).toArray().then((doc) => {
+              console.log(doc);
+                resolve(doc)
+              
+
             })
         })
     })
