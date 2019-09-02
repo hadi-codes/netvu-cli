@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient.connect(url, { useNewUrlParse
 
 
 
-function lastping() {
+function getLastping() {
     let list = [];
     let activeList = []
     let profiles = []
@@ -65,4 +65,4 @@ function lastping() {
         })
     })
 }
-module.exports.lastPing = lastping
+module.exports.getLastping = getLastping

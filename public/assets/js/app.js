@@ -18,8 +18,11 @@ fetch('https://netvu.xln.me/lp')
                 onlineDevices++
             }
         }
-
-        document.getElementById("all-devices").innerHTML = devices.length;
+      document.getElementById("lastUpdate").innerHTML = "       LAST UPDATE : "+
+(      dayjs(res.timestamp).format('YYYY/MM/DD HH:mm:ss')
+)    
+    document.getElementById("all-devices").innerHTML = devices.length;
+    
         document.getElementById("online-devices").innerHTML = onlineDevices;
         document.getElementById("offline-devices").innerHTML = offlineDevices;
 
