@@ -66,3 +66,29 @@ function getLastping() {
     })
 }
 module.exports.getLastping = getLastping
+
+
+const days = require('dayjs')
+function devicesNumberTime(){
+    return new Promise((resolve,reject)=>{
+
+
+        let arr=[]
+        MongoClient.then((db) => {
+            db.db('nLog3').collection('logs').findOne({ date: '27-08-2019' }).then((doc) => {
+                //  console.log(doc.logs.length)
+                for (i in doc.logs) {
+        
+                    arr.push({timestamp:days(doc.logs[i].timestamp).format(),devices:doc.logs[i].devicesLogs.length})  
+                    
+                }
+
+                resolve(arr)
+            })
+        })
+
+
+    })
+}
+
+module.exports.devicesNumberTime=devicesNumberTime

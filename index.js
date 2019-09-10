@@ -2,7 +2,7 @@ const express=require('express')
 const app = express()
 const lastping=require('./db').getLastping
 const port = process.env.PORT || 3001;
-
+let devicesNumberTime=require('./db').devicesNumberTime
 
 
 
@@ -31,7 +31,11 @@ lastping().then((lp)=>{
 
 
 
-
+app.get('/nt',(req,res)=>{
+  devicesNumberTime().then((data)=>{
+    res.send(data)
+  })
+})
 
 
 
