@@ -9,7 +9,7 @@ function getLastping() {
     let activeList = []
     let profiles = []
     let timestamp = '';
-    let devices=[]
+    let devices = []
     return new Promise((resolve, reject) => {
         MongoClient.then((db) => {
             db.db('nLog3').collection('profiles').find().toArray().then((doc) => {
@@ -36,7 +36,7 @@ function getLastping() {
                                 console.log(x);
                                 list.sort(function (a, b) { return b - a })
 
-                            } 
+                            }
                         }
 
                     }
@@ -69,26 +69,31 @@ module.exports.getLastping = getLastping
 
 
 const days = require('dayjs')
-function devicesNumberTime(){
-    return new Promise((resolve,reject)=>{
+function devicesNumberTime(date) {
 
-
-        let arr=[]
+    return new Promise((resolve, reject) => {
+        let arr = []
         MongoClient.then((db) => {
-            db.db('nLog3').collection('logs').findOne({ date: '01-09-2019' }).then((doc) => {
+            db.db('nLog3').collection('logs').findOne({ date: date }).then((doc) => {
                 //  console.log(doc.logs.length)
-                for (i in doc.logs) {
-        
-                    arr.push([doc.logs[i].timestamp,doc.logs[i].devicesLogs.length]) 
-                    
-                }
 
-                resolve(arr)
+                if (doc != null) {
+                    for (i in doc.logs) {
+
+                        arr.push([doc.logs[i].timestamp, doc.logs[i].devicesLogs.length])
+
+                    }
+
+                    resolve(arr)
+                } else {
+                    resolve({msg:'date not found'})
+                }
             })
+
         })
 
 
     })
 }
 
-module.exports.devicesNumberTime=devicesNumberTime
+module.exports.devicesNumberTime = devicesNumberTime

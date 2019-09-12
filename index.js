@@ -31,8 +31,8 @@ lastping().then((lp)=>{
 
 
 
-app.get('/nt',(req,res)=>{
-  devicesNumberTime().then((data)=>{
+app.get('/nt/:date',(req,res)=>{
+  devicesNumberTime(req.params.date).then((data)=>{
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.send(data)
