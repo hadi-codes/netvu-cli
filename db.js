@@ -79,7 +79,7 @@ function devicesNumberTime(){
                 //  console.log(doc.logs.length)
                 for (i in doc.logs) {
         
-                    arr.push({timestamp:doc.logs[i].timestamp,devices:doc.logs[i].devicesLogs.length})  
+                    arr.push([doc.logs[i].timestamp,doc.logs[i].devicesLogs.length]) 
                     
                 }
 
