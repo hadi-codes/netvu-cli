@@ -75,7 +75,7 @@ function devicesNumberTime(){
 
         let arr=[]
         MongoClient.then((db) => {
-            db.db('nLog3').collection('logs').findOne({ date: '27-08-2019' }).then((doc) => {
+            db.db('nLog3').collection('logs').findOne({ date: '01-09-2019' }).then((doc) => {
                 //  console.log(doc.logs.length)
                 for (i in doc.logs) {
         
