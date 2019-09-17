@@ -86,7 +86,7 @@ function devicesNumberTime(date) {
 
                     resolve(arr)
                 } else {
-                    resolve({msg:'date not found'})
+                    resolve({ msg: 'date not found' })
                 }
             })
 
@@ -97,3 +97,18 @@ function devicesNumberTime(date) {
 }
 
 module.exports.devicesNumberTime = devicesNumberTime
+
+
+
+function getDates() {
+    return new Promise((resolve) => {
+        MongoClient.then((db) => {
+            db.db('nLog3').collection('logs').distinct('date').then((doc) => {
+                resolve(doc)
+            })
+
+        })
+    })
+}
+
+module.exports.getDates = getDates

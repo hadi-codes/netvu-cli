@@ -3,7 +3,7 @@ const app = express()
 const lastping=require('./db').getLastping
 const port = process.env.PORT || 3001;
 let devicesNumberTime=require('./db').devicesNumberTime
-
+const getDates=require('./db').getDates
 
 
 app.use(express.static(__dirname + '/public'));
@@ -26,6 +26,11 @@ lastping().then((lp)=>{
 })
 })
 
+app.get('/dates',(req,res)=>{
+getDates().then(doc=>{
+  res.send(doc)
+})
+})
 
 
 
